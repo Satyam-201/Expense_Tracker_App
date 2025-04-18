@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Expense Tracker Dashboard</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #4caf50;
+        color: white;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .user-name {
+        font-weight: bold;
+      }
+
+      .logout {
+        color: white;
+        text-decoration: none;
+        background-color: #388e3c;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .logout:hover {
+        background-color: #2e7d32;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      /* Flash message base style */
+      .flash-message {
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: bold;
+        animation: fadeOut 0.5s ease-in-out 4.5s forwards;
+        transition: opacity 0.5s ease;
+      }
+
+      /* Success */
+      .alert-success {
+        background-color:rgb(80, 197, 107);
+      }
+
+      /* Error */
+      .alert-error {
+        background-color: #dc3545;
+      }
+
+      /* Warning */
+      .alert-warning {
+        background-color: #ffc107;
+        color: #000;
+      }
+
+      /* Info */
+      .alert-info {
+        background-color: #17a2b8;
+      }
+
+      /* Fade-out animation */
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          height: 0;
+          padding: 0;
+          margin: 0;
+          overflow: hidden;
+        }
+      }
+
+      .summary {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+      }
+
+      .summary div {
+        flex: 1;
+        padding: 1rem;
+        margin: 0 0.5rem;
+        background: #e8f5e9;
+        border-left: 6px solid #4caf50;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      form {
+        margin-bottom: 2rem;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="date"] {
+        padding: 0.5rem;
+        width: 23%;
+        margin: 0.5rem 1%;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 0.6rem 1.2rem;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        padding: 0.6rem;
+        background: #f1f8e9;
+        margin: 0.3rem 0;
+        border-radius: 5px;
+      }
+
+      .chart {
+        margin: 2rem 0;
+        text-align: center;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+
+      a {
+        color: #4caf50;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+       //FOR ALERT ON OVER SPENDING
+        document.getElementById("expenseForm").addEventListener("submit", function (e) {
+            const budget = {{ user['budget'] | tojson }};
+            const spent = {{ user['spent'] | tojson }};
+            const amount = parseInt(document.getElementById("amount").value);
+
+            if (!isNaN(amount) && (spent + amount > budget)) {
+              const confirmMsg = "This expense will exceed your budget. Are you sure you want to continue?";
+              if (!confirm(confirmMsg)) {
+                e.preventDefault();
+              }
+            }
+          });
+        //FOR POP UP MESSASGE SHOEING
+        setTimeout(() => {
+          const messages = document.querySelectorAll('.flash-message');
+          messages.forEach(msg => {
+            msg.style.opacity = '0';
+            setTimeout(() => msg.remove(), 500); // fully remove after fade-out
+          });
+        }, 3000);
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="user-name">👤 {{ user['name'] }}</div>
+      <a
+        href="/reset_all"
+        onclick="return confirm('Are you sure you want to reset all data?');"
+        class="logout"
+        >Reset All</a
+      >
+      <a href="/logout" class="logout">Logout</a>
+    </header>
+
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="flash-message alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <div class="summary">
+        <div>
+          <h3>Budget</h3>
+          <p>₹{{ user['budget'] }}</p>
+        </div>
+        <div>
+          <h3>Total Expenses</h3>
+          <p>₹{{ user['spent'] }}</p>
+        </div>
+        <div>
+          <h3>Balance</h3>
+          <p>₹{{ user['balance'] }}</p>
+        </div>
+      </div>
+      {% if user['budget']<=0 %}
+      <h4>Add Budget</h4>
+      <form method="POST" action="/add_budget">
+        <input
+          type="text"
+          name="budget_amount"
+          placeholder="New Budget Amount"
+          required
+        />
+        <button type="submit">Add Budget</button>
+      </form>
+      {%else%}
+      <h4>Add New Expense</h4>
+      <form id="expenseForm" method="POST" action="/add_expense">
+        <input type="text" name="title" placeholder="Title" required />
+        <input
+          id="amount"
+          type="number"
+          name="amount"
+          placeholder="Amount"
+          required
+        />
+        <input type="text" name="category" placeholder="Category" required />
+        <input type="date" name="date" required />
+        <button type="submit">Add Expense</button>
+      </form>
+
+      <h4>Last Five Expenses</h4>
+
+      <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount (₹)</th>
+            <th>Title</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in user['expenses'] %}
+          <tr>
+            <td>{{ e.date }}</td>
+            <td>₹{{ e.amount }}</td>
+            <td>{{ e.title }}</td>
+            <td>{{ e.category }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="chart">
+        <h4>Monthly Expense Chart</h4>
+        <img
+        src="{{ url_for('static', filename=user['name'] + '.png') }}"
+          alt="Monthly Chart"
+          style="max-width: 100%"
+        />
+      </div>
+
+      <div class="actions">
+        <form action="/download_expense" method="POST">
+          <label for="category">How Long :</label>
+          <select name="category" id="category">
+            <option value="1">Weekly Expense</option>
+            <option value="2">Monthly Expense</option>
+          </select>
+          <button type="submit">⬇️ Download Expenses (CSV)</button>
+        </form>
+      </div>
+      {%endif%}
+    </div>
+  </body>
+</html>

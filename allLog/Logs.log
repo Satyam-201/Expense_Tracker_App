@@ -1,0 +1,57 @@
+2025-04-18 11:30:11,807 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://100.66.64.146:8000
+2025-04-18 11:30:11,807 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2025-04-18 11:30:12,149 - INFO - root - Login Page Fetched
+2025-04-18 11:30:12,158 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:30:12] "GET / HTTP/1.1" 200 -
+2025-04-18 11:30:18,697 - INFO - root - Login Page Fetched
+2025-04-18 11:30:19,216 - INFO - root - Generate Chart Function Called 
+2025-04-18 11:30:19,652 - INFO - root - Chart Prepared Successfully
+2025-04-18 11:30:19,652 - INFO - root - Email : Admin@gmail.com Password : 1010 :-Login Successfully & Session Saved Successfully!
+2025-04-18 11:30:19,654 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:30:19] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-04-18 11:30:19,662 - INFO - root - Home Page Fetched 
+2025-04-18 11:30:19,732 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:30:19] "GET /homePage HTTP/1.1" 200 -
+2025-04-18 11:30:20,473 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:30:20] "GET /static/Mr.%20Admin.png HTTP/1.1" 200 -
+2025-04-18 11:30:43,086 - INFO - root - Log Out Request Fetched
+2025-04-18 11:30:43,088 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:30:43] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-04-18 11:30:43,098 - INFO - root - Login Page Fetched
+2025-04-18 11:30:43,100 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:30:43] "GET / HTTP/1.1" 200 -
+2025-04-18 11:32:15,955 - INFO - root - Login Page Fetched
+2025-04-18 11:32:16,195 - INFO - root - Generate Chart Function Called 
+2025-04-18 11:32:16,584 - INFO - root - Chart Prepared Successfully
+2025-04-18 11:32:16,584 - INFO - root - Email : Admin@gmail.com Password : 1010 :-Login Successfully & Session Saved Successfully!
+2025-04-18 11:32:16,587 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:32:16] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-04-18 11:32:16,595 - INFO - root - Home Page Fetched 
+2025-04-18 11:32:16,597 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:32:16] "GET /homePage HTTP/1.1" 200 -
+2025-04-18 11:32:16,685 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:32:16] "GET /static/Mr.%20Admin.png HTTP/1.1" 200 -
+2025-04-18 11:32:47,182 - INFO - root - Add Expense Request Fetched
+2025-04-18 11:32:47,365 - INFO - root - Expense Added Successfully,Updated Data : {'name': 'Mr. Admin', 'email': 'Admin@gmail.com', 'expenses': [{'date': '2025-04-10', 'amount': 700, 'title': 'Veg Thali In Civil Line', 'category': 'Food'}, {'date': '2025-04-16', 'amount': 70, 'title': 'Samosa', 'category': 'Food'}], 'budget': 5000, 'spent': 770, 'balance': 4230}
+2025-04-18 11:32:47,365 - INFO - root - Generate Chart Function Called 
+2025-04-18 11:32:47,876 - INFO - root - Chart Prepared Successfully
+2025-04-18 11:32:47,879 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:32:47] "[32mPOST /add_expense HTTP/1.1[0m" 302 -
+2025-04-18 11:32:47,886 - INFO - root - Home Page Fetched 
+2025-04-18 11:32:47,890 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:32:47] "GET /homePage HTTP/1.1" 200 -
+2025-04-18 11:32:47,957 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:32:47] "GET /static/Mr.%20Admin.png HTTP/1.1" 200 -
+2025-04-18 11:34:27,697 - INFO - root - Log Out Request Fetched
+2025-04-18 11:34:27,700 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:34:27] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-04-18 11:34:27,720 - INFO - root - Login Page Fetched
+2025-04-18 11:34:27,723 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:34:27] "GET / HTTP/1.1" 200 -
+2025-04-18 11:35:45,895 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://100.66.64.146:8000
+2025-04-18 11:35:45,895 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2025-04-18 11:35:51,410 - INFO - root - Login Page Fetched
+2025-04-18 11:35:51,926 - INFO - root - Generate Chart Function Called 
+2025-04-18 11:35:52,361 - INFO - root - Chart Prepared Successfully
+2025-04-18 11:35:52,361 - INFO - root - Email : Admin@gmail.com Password : 1010 :-Login Successfully & Session Saved Successfully!
+2025-04-18 11:35:52,361 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:35:52] "[32mPOST / HTTP/1.1[0m" 302 -
+2025-04-18 11:35:52,370 - INFO - root - Home Page Fetched 
+2025-04-18 11:35:52,392 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:35:52] "GET /homePage HTTP/1.1" 200 -
+2025-04-18 11:35:53,138 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:35:53] "GET /static/Mr.%20Admin.png HTTP/1.1" 200 -
+2025-04-18 11:36:02,148 - INFO - root - Log Out Request Fetched
+2025-04-18 11:36:02,151 - INFO - root - Graph Deleted : d:\PROJECT.H\4TH_SEM_PYTHON_PROJECTS\EXPENSE_TRACKER_TERMINAL\static\Mr. Admin.png
+2025-04-18 11:36:02,153 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:36:02] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-04-18 11:36:02,175 - INFO - root - Login Page Fetched
+2025-04-18 11:36:02,185 - INFO - werkzeug - 127.0.0.1 - - [18/Apr/2025 11:36:02] "GET / HTTP/1.1" 200 -
